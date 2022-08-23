@@ -1,0 +1,13 @@
+@import '../../standing-orders/standing-order-detail/standing-order-detail.component.scss';
+
+input {
+    font-size: large;
+}
+
+.invalidData{
+    color: red;
+}
+
+#validationErrorMessages{
+    height: 30px;
+}

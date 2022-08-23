@@ -1,0 +1,51 @@
+<header>
+  <div id="headline" class="container-fluid">
+    <h1>Prehľad trvalých príkazov</h1>
+    <h5>Trvalé príkazy sú ideálne, keď potrebujete pravidelne posielať platby v rovnakej výške. Tu ich môžete upravovať alebo vytvárať nové.</h5>
+  </div>
+</header>
+<main>
+  <div class="container-fluid justify-content-center">
+    <div class="card">
+      <div class="card-header py-4 text-right">
+        <button type="button" class="btn btn-primary" [routerLink]="['/trvale-prikazy/novy']">
+            Nový trvalý príkaz
+        </button>  
+      </div>
+      <div class="card-body">
+        <table class="table table-striped table-bordered justify-content-center align-middle" (mouseleave)="hoveredIndex=null">
+          <tbody>
+            <tr *ngFor="let standingOrder of standingOrders; let index = index" (mouseenter)="hoveredIndex=index">
+              <td name="date" scope="row">
+                {{ standingOrder.nextRealizationDate | dateFormat }}
+              </td>
+              <td name="accountNameAndNumber">
+                <div class="d-flex flex-row justify-content-between mb-4">
+                  <span name="accountName">{{ standingOrder.name | uppercase}}</span>
+                  <span *ngIf="index==hoveredIndex">
+                    <button type="button" class="btn btn-primary py-1 px-3 mr-3" [routerLink]="['/trvale-prikazy', standingOrder.standingOrderId]">Upraviť</button>
+                    <button type="button" class="btn btn-primary py-1 px-3" (click)="deleteOrder(standingOrder)">Zrušiť</button>
+                  </span>            
+                </div>
+                <div name="accountNumber"> 
+                  <span class="badge badge-secondary">{{standingOrder.interval}}</span> IBAN: {{ standingOrder.accountNumber | iban | uppercase }}
+                </div> 
+              </td>
+              <td name="amount">
+                {{ standingOrder.amount | currency : 'EUR' : 'symbol' : '1.2-2' | currencyFormat : '€' }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer py-4">
+        <div class="d-flex flex-row justify-content-between mx-5">
+          <div class="p-2">Počet trvalých príkazov: {{ standingOrders.length }}</div>
+          <div class="p-2">Celková suma: {{ totalAmount | currency : 'EUR' : 'symbol' : '1.2-2' | currencyFormat : '€' }}</div>
+        </div>  
+      </div>
+    </div>
+  </div>
+</main>
+
+

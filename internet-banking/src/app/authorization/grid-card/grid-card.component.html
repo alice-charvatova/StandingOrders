@@ -1,0 +1,27 @@
+<div class="container p-3">
+    <h4 mat-dialog-title>Zadejte PIN kód z riadku {{data.coordinate.toString().substr(0,1)}} a stĺpca {{data.coordinate.toString().substr(1,1)}}:</h4><br>
+    <form novalidate
+                [formGroup]="authorizationForm">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <mat-label>PIN</mat-label>
+            <input formControlName="pinCode" matInput [(ngModel)]="data.pinCode" cdkFocusInitial 
+            [ngClass]="{'is-invalid': authorizationForm.controls.pinCode.errors}">
+        </mat-form-field>
+        <div id="validationErrorMessages" class="invalidData">
+            <div *ngIf="data.submitted"> Zadali ste špatný PIN.</div>
+            <div *ngIf="authorizationForm.controls.pinCode.errors">
+                <div *ngIf="authorizationForm.controls.pinCode.errors.pattern || authorizationForm.controls.pinCode.errors.maxlength">
+                    Zadejte 4 číslice z grid karty.
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div mat-dialog-actions>
+        <button class="btn btn-primary mr-3 mb-4" mat-button [mat-dialog-close]="true" (click)="submit(data.pinCode)" [disabled]="!authorizationForm.valid">Ok</button>
+        <button class="btn btn-primary mr-3 mb-4" mat-button (click)="cancel()">Zrušiť</button>
+    </div>
+    </form>   
+</div>
+

@@ -1,0 +1,21 @@
+@import '../standing-orders.component.scss';
+
+label {
+    font-weight: bold;
+}
+
+form {
+    font-size: large;
+}
+
+.card {
+    background-color: $primary-color;
+}
+
+input[type="text"]:disabled{
+    background-color: white;
+    border-left: 0px;
+    text-align: right;
+}
+
+

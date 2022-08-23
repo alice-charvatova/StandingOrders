@@ -1,0 +1,88 @@
+@import '../../styles.scss';
+
+header {
+    background-color: $primary-color;
+    color: $secondary-color;
+    border: white solid 5px;
+
+    #headline {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        width: 65%;
+        position: relative;
+    }
+
+    h5 {
+        margin-top: 15px;
+    }
+}
+
+.btn {
+    background-color: $secondary-color;
+    border: 1px solid $secondary-color;
+}
+
+.card-header {
+    background-color: $primary-color;
+
+}
+
+.container-fluid{
+    width: 80%;
+}
+
+.card-body {
+    font-weight: bold; 
+    font-size: x-large; 
+
+    td[name="date"]{
+        width: 13%; 
+        text-align: center;
+        margin:0 auto;
+    }
+
+    td[name="accountNameAndNumber"]{
+        width: 62%;
+        padding-left: 30px;
+
+        div[name="accountNumber"]{
+            font-size: smaller;
+            font-weight: normal;
+            padding-top: 10px;
+        }
+
+        span[name="accountName"]{
+            padding-top: 20px;
+        }   
+    }
+
+    td[name="amount"]{
+        width: 14%;
+        text-align: center;
+        margin:0 auto;
+    }
+}
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+.card-footer {
+    background-color: $primary-color;
+    font-weight: bold; 
+    font-size: x-large; 
+}
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+

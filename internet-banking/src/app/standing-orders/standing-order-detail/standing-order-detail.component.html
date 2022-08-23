@@ -1,0 +1,105 @@
+<header>
+    <div id="headline" class="container-fluid">
+      <h1>Trvalý príkaz</h1>
+    </div>
+  </header>
+<main>
+    <div class="container-fluid justify-content-center">
+      <div class="card py-5 my-3">
+        <div style="justify-content: center;">
+            <form novalidate
+                [formGroup]="orderForm">
+                <div class="form-group row mb-2 justify-content-center">
+                    <label class="col-md-2 col-form-label">Príjemca</label>
+                    <div class="col-md-5">
+                        <input class="form-control" formControlName="name" [ngClass]="{'is-invalid': submitted && orderForm.controls.name.errors}">
+                        <div *ngIf="submitted && orderForm.controls.name.errors" class="invalid-feedback">
+                            <div *ngIf="orderForm.controls.name.errors.required">
+                                Toto pole je povinné.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-2 justify-content-center">
+                    <label class="col-md-2 col-form-label">IBAN</label>
+                    <div class="col-md-5">
+                        <input class="form-control" formControlName="accountNumber" placeholder="napr. SK12 3456 7890 1234 5678 9012"
+                        [ngClass]="{'is-invalid': submitted && orderForm.controls.accountNumber.errors}">
+                        <div *ngIf="submitted && orderForm.controls.accountNumber.errors" class="invalid-feedback">
+                            <div *ngIf="orderForm.controls.accountNumber.errors.required">
+                                Toto pole je povinné.
+                            </div>
+                            <div *ngIf="orderForm.controls.accountNumber.errors.pattern">
+                                Formát IBAN: 2 písmena + 22 čísel, napr. SK12 3456 7891 2345 6789 1234
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-2 justify-content-center">
+                    <label class="col-md-2 col-form-label">Suma</label>
+                    <div class="col-md-5 input-group">
+                        <input class="form-control col-md-11" formControlName="amount" [ngClass]="{'is-invalid': submitted && orderForm.controls.amount.errors}">
+                        <input type="text" class="input-group-append form-control col-md-1" placeholder="€" disabled>
+                        <div *ngIf="submitted && orderForm.controls.amount.errors" class="invalid-feedback">
+                            <div *ngIf="orderForm.controls.amount.errors.required">
+                                Toto pole je povinné.
+                            </div>
+                            <div *ngIf="orderForm.controls.amount.errors.pattern">
+                                Zadejte pouze čísla, formát: 500 / 500.00 / 500,00.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-2 justify-content-center">
+                    <label class="col-md-2 col-form-label">Variabilný symbol</label>
+                    <div class="col-md-5">
+                        <input class="form-control" formControlName="variableSymbol">
+                    </div>
+                </div>
+                <div class="form-group row mb-2 justify-content-center">
+                    <label class="col-md-2 col-form-label">Konštantný symbol</label>
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <input type="text" class="form-control" formControlName="constantSymbol">
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-primary InputAddOn-item" mat-raised-button (click)="openConstantSymbolDialog()">Zoznam symbolov</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-2 justify-content-center">
+                    <label class="col-md-2 col-form-label">Špecifický symbol</label>
+                    <div class="col-md-5">
+                        <input class="form-control" formControlName="specificSymbol">
+                    </div>
+                </div>
+                <div class="form-group row mb-2 justify-content-center">
+                    <label class="col-md-2 col-form-label">Poznámka pre príjemcu</label>
+                    <div class="col-md-5">
+                        <input class="form-control" formControlName="note">
+                    </div>
+                </div>
+                <app-periodicity [periodicityForm]="orderForm.get('periodicityForm')"></app-periodicity>
+                <div class="form-group row mb-2 justify-content-center">
+                    <label class="col-md-2 col-form-label" >Začiatok účinnosti</label>
+                    <div class="col-md-5">
+                        <input class="form-control" type="date" formControlName="validFrom" [ngClass]="{'is-invalid': submitted && orderForm.controls.validFrom.errors}">
+                        <div *ngIf="submitted && orderForm.controls.validFrom.errors" class="invalid-feedback">
+                            <div *ngIf="orderForm.controls.validFrom.errors.validateDate">
+                                Datum musi byt najskor od zajtra.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-2 justify-content-center">
+                    <button type="button" class="btn btn-primary" mat-raised-button (click)="saveForm()"> 
+                        Uložiť
+                    </button>
+                    <button class="btn btn-primary ml-3" type="button" (click)="goBack()">
+                        Zahodiť
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

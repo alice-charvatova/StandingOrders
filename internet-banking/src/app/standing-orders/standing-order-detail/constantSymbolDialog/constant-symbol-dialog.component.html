@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Zoznam konštantných symbolov</h2>
+<mat-dialog-content>
+    <table class="table table-bordered justify-content-center align-middle">
+        <tbody>
+          <tr *ngFor="let symbol of constantSymbols;" (click)="close(symbol.value)">
+            <td name="value" scope="row">
+              {{ symbol.value }}
+            </td>
+            <td name="text" class="align-middle">
+              {{ symbol.text }}
+            </td>
+          </tr>  
+        </tbody>
+    </table>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="btn btn-primary ml-3 mb-3" (click)="cancel()">Zatvoriť</button>
+</mat-dialog-actions>

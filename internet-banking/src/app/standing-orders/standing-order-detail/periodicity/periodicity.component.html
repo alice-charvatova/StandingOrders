@@ -1,0 +1,30 @@
+<div [formGroup]="periodicityForm">
+<div class="form-group row mb-2 justify-content-center">
+    <label for="intervals" class="col-md-2 col-form-label">Periodicita</label>
+    <div class="col-md-5" >
+        <select [(ngModel)]="intervalSelect" id="intervals" class="form-control" formControlName="intervalId">
+            <option *ngFor="let orderInterval of intervals" [value]="orderInterval.value">{{orderInterval.text}}</option>
+        </select>       
+    </div>
+</div>
+<div *ngIf="intervalSelect == 2" class="form-group row mb-2 justify-content-center">
+    <label for="spec" class="col-md-2 col-form-label" ></label>
+    <div class="col-md-5">
+        <select id="spec" class="form-control" formControlName="intervalSpecification" >
+            <option *ngFor="let day of weekly" [value]="day.value">{{day.name}}</option>
+        </select>
+    </div>
+</div>
+<div *ngIf="intervalSelect == 3" class="form-group row mb-2 justify-content-center">
+    <label for="spec" class="col-md-2 col-form-label" ></label>
+    <div class="col-md-5">
+        <select id="spec" class="form-control" formControlName="intervalSpecification" >
+            <option *ngFor="let day of monthly" [value]="day.value">{{day.name}}</option>
+        </select>
+    </div>
+</div>
+</div>
+
+
+
+
